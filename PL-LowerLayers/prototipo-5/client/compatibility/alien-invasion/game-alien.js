@@ -132,14 +132,14 @@ var share = function() {
 }
 
 var profits = function() {	
-	if (GameAlien.points == 10000){
+	if (GameAlien.points == 15000){
 		var userid = Partidas.findOne({_id:Session.get("match_id")}).jugadores[0].user_id;
 		var gameid = Partidas.findOne({_id:Session.get("match_id")}).game_id;
 		var profits = Games.findOne({name: "Alien_Invasion"}).profits;
 		var profitusers;
 		var saved = false;
 		profits.forEach(function(elem) {
-			if (elem.title=="Has hecho 10000 pts")
+			if (elem.title=="You have earned 15000 points")
 				profitusers=elem.users;
 		});
 		profitusers.forEach(function(elem) {
@@ -149,9 +149,9 @@ var profits = function() {
 		});
 		if (saved==false){
             var icon = $(window.document.createElement('img')).attr('src', 'awardicon.png');
-			$.ambiance({message: icon, title: "Has obtenido 10000 puntos!",type: "success"});
+			$.ambiance({message: icon, title: "You have earned 15000 points!",type: "success"});
 			profitusers.push(userid);
-			Games.update({_id: gameid }, {$set: {profits: [{title:"Has hecho 10000 pts", users:profitusers }] } });
+			Games.update({_id: gameid }, {$set: {profits: [{title:"You have earned 15000 points", users:profitusers }] } });
 		}
 	}
 };

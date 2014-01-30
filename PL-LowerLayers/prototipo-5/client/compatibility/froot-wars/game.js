@@ -299,7 +299,7 @@ var game = {
 							var profitusers;
 							var saved = false;
 							profits.forEach(function(elem) {
-								if (elem.title=="Has terminado las dos primeras pantallas")
+								if (elem.title=="You have completed the first two levels")
 									profitusers=elem.users;
 							});
 							profitusers.forEach(function(elem) {
@@ -308,9 +308,9 @@ var game = {
 							});
 							if (saved==false){
 								var icon = $(window.document.createElement('img')).attr('src', 'awardicon.png');				
-								$.ambiance({message: icon, title: "Has terminado las dos primeras pantallas!",type: "success"});
+								$.ambiance({message: icon, title: "You have completed the first two levels!",type: "success"});
 								profitusers.push(userid);
-								Games.update({_id: gameid }, {$set: {profits: [{title:"Has terminado las dos primeras pantallas", users:profitusers }] } });
+								Games.update({_id: gameid }, {$set: {profits: [{title:"You have completed the first two levels", users:profitusers }] } });
 							}
 						})();
 

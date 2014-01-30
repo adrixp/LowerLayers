@@ -145,7 +145,7 @@ function menuAmInv(esto) {
 		}else if(partida.admin_by != Meteor.userId()){
 			$.ambiance({message: "You are not the admin", type: "error", fade: false});
 		}else if(!no_limit){
-			$.ambiance({message: "Partida llena", type: "error", fade: false});
+			$.ambiance({message: "Full match", type: "error", fade: false});
 		}else{
 			var invitacion = Invitations.find().fetch();
 			var sentInv = false;

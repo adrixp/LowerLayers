@@ -4,12 +4,12 @@ Meteor.startup(function () {
 	if(Games.find({name:"Froot_Wars"}).count() == 0){
 		Games.insert({name:"Froot_Wars", players_max : 1});
 		//Logros
-		Games.update({name: "Froot_Wars"},{$push: {profits: {title:"Has terminado las dos primeras pantallas", users:[]} } });   
+		Games.update({name: "Froot_Wars"},{$push: {profits: {title:"You have completed the first two levels", users:[]} } });   
 	};
 	if(Games.find({name:"Alien_Invasion"}).count() == 0){
 		Games.insert({name:"Alien_Invasion", players_max : 1});
 		//Logros
-		Games.update({name: "Alien_Invasion"},{$push: {profits: {title:"Has hecho 10000 pts", users:[]} } });
+		Games.update({name: "Alien_Invasion"},{$push: {profits: {title:"You have earned 15000 points", users:[]} } });
 	};
 	if(Games.find({name:"Clarcassonne"}).count() == 0){
 		Games.insert({name:"Clarcassonne", players_max : 5});
