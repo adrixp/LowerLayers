@@ -358,8 +358,10 @@ Template.roomgametemp.events = {
 			$('#aliencanvas').remove();
 			GameAlien.desactivar();
 		}else if (weAreFroot =="Froot_Wars"){
-			game.ended = true;					
-			game.showEndingScreen();
+			if (game.ended!=true){
+				game.ended = true;					
+				game.showEndingScreen();
+			}	
 			$('#gamecanvas').remove();
 		}else if(weAreHero =="The_Hero"){
 			$('#gamecanvasHero').remove();

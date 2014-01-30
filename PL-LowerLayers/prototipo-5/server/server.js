@@ -16,6 +16,8 @@ Meteor.startup(function () {
 	};
 	if(Games.find({name:"The_Hero"}).count() == 0){
 		Games.insert({name:"The_Hero", players_max : 1});
+		//Logros
+		Games.update({name: "The_Hero"},{$push: {profits: {title:"You have reached Level 5", users:[]} } });
 	};
 	
 });

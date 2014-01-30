@@ -280,7 +280,26 @@ var game = {
 				} else {
 					$('#endingmessage').html('All Levels Complete. Well Done!!!');
 					$("#playnextlevel").hide();
-
+					(function() {	
+						var userid = Partidas.findOne({_id:Session.get("match_id")}).jugadores[0].user_id;
+						var gameid = Partidas.findOne({_id:Session.get("match_id")}).game_id;
+						var profits = Games.findOne({name: "Froot_Wars"}).profits;
+						var profitusers;
+						var saved = false;
+						profits.forEach(function(elem) {
+							if (elem.title=="You have completed the first two levels")
+								profitusers=elem.users;
+						});
+						profitusers.forEach(function(elem) {
+							if (elem==userid)
+								saved=true;
+						});
+						if (saved==false){
+							var icon = $(window.document.createElement('img')).attr('src', 'awardicon.png');				
+							$.ambiance({message: icon, title: "You have completed the first two levels!",type: "success"});
+							profitusers.push(userid);
+							Games.update({_id: gameid }, {$set: {profits: [{title:"You have completed the first two levels", users:profitusers }] } });
+						}
 						Meteor.call("matchFinish", Session.get("match_id"), Session.get("game_id"), game.score);		
 						
 						$(".tweetbtn").html("<iframe allowtransparency='true' frameborder='0' scrolling='no'"+
@@ -292,26 +311,7 @@ var game = {
 						$(".gsharebtn").html("<a href='https://plus.google.com/share?url=http://lowerlayers.meteor.com/' onclick='javascript:window.open(this.href,"+
                           "'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;'><img src='https://www.gstatic.com/images/icons/gplus-32.png' alt='Share on Google+'/></a>");
 
-						(function() {	
-							var userid = Partidas.findOne({_id:Session.get("match_id")}).jugadores[0].user_id;
-							var gameid = Partidas.findOne({_id:Session.get("match_id")}).game_id;
-							var profits = Games.findOne({name: "Froot_Wars"}).profits;
-							var profitusers;
-							var saved = false;
-							profits.forEach(function(elem) {
-								if (elem.title=="You have completed the first two levels")
-									profitusers=elem.users;
-							});
-							profitusers.forEach(function(elem) {
-								if (elem==userid)
-									saved=true;
-							});
-							if (saved==false){
-								var icon = $(window.document.createElement('img')).attr('src', 'awardicon.png');				
-								$.ambiance({message: icon, title: "You have completed the first two levels!",type: "success"});
-								profitusers.push(userid);
-								Games.update({_id: gameid }, {$set: {profits: [{title:"You have completed the first two levels", users:profitusers }] } });
-							}
+						
 						})();
 
 

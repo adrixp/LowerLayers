@@ -184,6 +184,28 @@ canvasApp = function() {
 			if ((princessesCaught % 3==0)){//nivel
 				level++;
 				monster.speed +=30;
+				if (level == 5){
+					var userid = Partidas.findOne({_id:Session.get("match_id")}).jugadores[0].user_id;
+					var gameid = Partidas.findOne({_id:Session.get("match_id")}).game_id;
+					var profits = Games.findOne({name: "The_Hero"}).profits;
+					var profitusers;
+					var saved = false;
+					profits.forEach(function(elem) {
+						if (elem.title=="You have reached Level 5")
+							profitusers=elem.users;
+					});
+					profitusers.forEach(function(elem) {
+						if (elem==userid){
+								saved=true;
+						}
+					});
+					if (saved==false){ 
+       				    var icon = $(window.document.createElement('img')).attr('src', 'awardicon.png');
+						$.ambiance({message: icon, title: "You have reached Level 5!",type: "success"});
+						profitusers.push(userid);
+						Games.update({_id: gameid }, {$set: {profits: [{title:"You have reached Level 5", users:profitusers }] } });
+					}
+				}
 			}
 
 			if (princessesCaught > record){//record
