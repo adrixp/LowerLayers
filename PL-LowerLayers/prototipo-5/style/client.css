@@ -1,0 +1,289 @@
+html{
+    margin: auto;
+    font-family: verdana, sans-serif;
+    color: white;
+	
+}
+
+
+body{
+	background-image: url("/backgrounds/wallpaper.jpg");
+	background-repeat: repeat-x;
+	background-color: #0B0E15; 
+	font-size: 85%;
+}
+
+button{
+	color: white;
+	background-color: #058;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border: solid;
+	border-width: 1.5px;
+	border-color: #0AF;
+	cursor: pointer;
+}
+
+
+.not_able{
+	background-color: #333;
+	border-color: #888;
+}
+
+button:hover{
+	background-color: #08C;
+}
+
+.not_able:hover{
+	background-color: #555;
+}
+
+
+a{
+	padding: 5px;
+	text-decoration: underline;
+}
+
+a:hover{
+	color: #6CE;
+}
+
+input:focus{
+	background-color: #C7FFFF;
+}
+
+#creator_table{
+	border: solid;
+	border-width: thin;
+	border-color: #222;
+} 
+
+#creator_table td{
+	padding: 5px;
+}
+
+#titulo{
+	text-align:center;
+	font-weight:bold;
+	font-size:180%;
+	text-shadow: 0.1em 0.1em 0.1em #2E9AFE, 0.3em 0.2em 0.5em black;
+}
+#subtitulo{	
+	text-align:center;
+	font-weight:bold;
+	font-size:100%;
+}
+
+#aliencanvas{	
+	border: 2px solid #848484;
+}
+
+
+
+
+#div-login-button{
+    float: right;
+    position: fixed;
+    right: 16%;
+    font-size:120%;
+    color: white;
+    background-color: #1C1C1C;
+    border: 5px solid #1C1C1C;
+    border-radius:3px;
+
+}
+
+#div-login-button:hover {
+    color: #1C1C1C;
+}
+
+#coin-slider{
+	z-index:-1;
+    width: 800px;
+    height:400px;
+    margin: auto;
+    border: 8px solid #1C1C1C;
+    box-shadow: 10px 10px 5px #1C1C1C;
+    transition: border-color 1s;
+
+}
+
+#coin-slider:hover {
+    border-color: #1C1C1C;
+}
+
+#friends {
+	width: 176px;
+	height:	50px;
+	font-weight:bold;
+	text-align: center;
+	line-height: 50px;
+	border-radius:7px;	
+	background-color: #2E9AFE;
+	border: 2px solid #2E9AFE;
+	position: absolute;
+}
+
+.linkgame{
+	background-color: #43749D;
+	border: 2px solid #43749D;
+	border-radius:20px;
+	text-decoration: none;
+}
+
+
+
+#buttVideoSt {
+	width: 176px;
+	height:	40px;
+	font-weight:bold;
+	text-align: center;
+	line-height: 50px;
+	border-radius:7px;	
+	background-color: #45A654;
+	border: 2px solid #45A654;
+}
+
+#tabs{
+	margin-top: 35px;
+
+
+}
+
+#chatTabs{
+	position: absolute;
+
+}
+
+
+.linkmatch{
+	cursor:pointer;
+}
+
+#creator_table tr td{
+	text-align: center;
+	width: 250px;
+}
+
+#matches_table{
+	position: absolute; 
+	left: 30%;
+	width: 70%;
+}
+
+#matches_table tr td{
+	text-align: center;
+	vertical-align: middle;
+}
+
+#bygameranking table,
+#byuserranking table,
+#byusergameranking table {
+	margin: 20px 0 20px 0 !important;
+}
+
+#ranking a:hover {
+	color: #FAB948;
+} 
+
+#bygameranking th, #bygameranking td,
+#byuserranking th, #byuserranking td,
+#byusergameranking th, #byusergameranking td {
+	padding: 2px 4px 2px 4px !important;
+	text-align: center;
+	vertical-align: top;
+	background-color: #10B787;
+	border: 1px solid #12693C;
+}
+
+#bygameranking th,
+#byuserranking th,
+#byusergameranking th {
+	background-color: #247941;
+}
+
+
+
+#accordion{	
+	position: absolute;
+	text-align:left;
+}
+
+#accordion #formSearch{	
+	display: block;
+	width: 130px;
+}
+
+#accordion #buttonSearch{	
+	display: block;
+}
+
+
+#accordion .ui-accordion-content{
+	width: 103px;
+	height: 420px;
+}
+
+.menuAmigosStyle {
+	cursor:pointer;
+	font-size: 10px;
+}
+
+
+.alaputaizq{
+
+	float:left;
+	width:20%;
+}
+
+.alaputader{
+
+	float:right;
+	width:80%;
+}
+
+.alaputaizqtop{
+
+	float:left;
+	width:30%;
+	
+}
+
+.alaputadertop{
+
+	float:right;
+		width:70%;
+}
+
+.titulogame{
+	margin-left: 20%;
+}
+
+.coin-slider { overflow: hidden; zoom: 1; position: relative;z-index:-1; margin-top: 15px;}
+.coin-slider a{ text-decoration: none; outline: none; border: none; }
+
+.cs-buttons { font-size: 0px; padding: 10px; float: left; }
+.cs-buttons a { margin-left: 5px; height: 10px; width: 10px; float: left; border: 1px solid #1C1C1C; color: #1C1C1C; text-indent: -1000px; }
+.cs-active { background-color: #1C1C1C; color: #1C1C1C; }
+
+.cs-title { width: 545px; padding: 10px; background-color: #1C1C1C; color: #1C1C1C; }
+
+.cs-prev,
+.cs-next { background-color: #1C1C1C; color: #1C1C1C; padding: 0px 10px; }
+
+
+#avatar-slider img{
+	display: none;
+}
+#avatar-slider img:nth-child(1){
+	display: block;
+}
+
+.ui-autocomplete {
+	max-height: 100px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+}
