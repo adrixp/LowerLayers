@@ -110,6 +110,8 @@ joinmatch = function(match_id, viewer, invited) {
 						$('#frootwarscontainer').show();
 					else if (Games.findOne({_id : Session.get('game_id')}).name=="The_Hero")
 						$('#theherocontainer').show();
+					else if (Games.findOne({_id : Session.get('game_id')}).name=="Extreme_Pong")
+						$('#pongcontainer').show();
 
 					// Si ya estaba dentro o es observador
 					if(!already_into && !viewer){
@@ -188,7 +190,8 @@ Template.gamestemp.events = {
 		Session.set('game_id', $(this)[0]._id);
 		if(Games.findOne({_id : Session.get("game_id")}).name=="Alien_Invasion" || 
 		Games.findOne({_id : Session.get("game_id")}).name=="Froot_Wars" || 
-		Games.findOne({_id : Session.get("game_id")}).name=="The_Hero"){
+		Games.findOne({_id : Session.get("game_id")}).name=="The_Hero" ||
+		Games.findOne({_id : Session.get("game_id")}).name=="Extreme_Pong"){
 			$('#games').hide();
 			var current_match_id = Partidas.insert({
 				game_id: Session.get("game_id"),
@@ -213,6 +216,10 @@ Template.gamestemp.events = {
 				$('#theherocontainer').show();
 				$('#theherocontainer').append("<canvas id='gamecanvasHero' width='512' height='480' ></canvas>");
 				canvasApp();
+			}else if (Games.findOne({_id :Session.get("game_id")}).name=="Extreme_Pong"){
+				$('#pongcontainer').show();
+				$('#pongcontainer').append("<canvas id='pongcanvas' width='960' height='640'></canvas>");
+				GamePong.initialize("pongcanvas",spritesPong,playMenu);
 			}
 
 			Partidas.update({_id : Session.get('match_id')},{$push: {jugadores: {user_id: Meteor.userId()}},$inc:{num_players :1}});
@@ -266,8 +273,10 @@ Template.matchestemp.events = {
 					}else if (Games.findOne({_id :Session.get("game_id")}).name=="Froot_Wars"){
 						$('#frootwarscontainer').show();
 					}else if (Games.findOne({_id :Session.get("game_id")}).name=="The_Hero"){
-						$('#theherocontainer').show();
-					}
+						$('#pongcontainer').show();
+					}else if (Games.findOne({_id :Session.get("game_id")}).name=="Extreme_Pong"){
+						$('#pongcontainer').show();
+					}	
 					Partidas.update({_id : Session.get('match_id')},{$push: {jugadores: {user_id: Meteor.userId()}},$inc:{num_players :1}});
 					var full = Partidas.findOne({_id : Session.get('match_id')}).num_players >= Partidas.findOne({_id : Session.get('match_id')}).players_max;
 					Partidas.update({_id : Session.get('match_id')},{$set: {full : full}});
@@ -353,6 +362,7 @@ Template.roomgametemp.events = {
 		var weAreFroot = Games.findOne({_id : quited_game_id}).name;
 		var weAreHero = Games.findOne({_id : quited_game_id}).name;
 		var weAreClarca = Games.findOne({_id : quited_game_id}).name;
+		var weArePong = Games.findOne({_id : quited_game_id}).name;
 
 		if (weAreAlien =="Alien_Invasion"){
 			$('#aliencanvas').remove();
@@ -368,17 +378,24 @@ Template.roomgametemp.events = {
 			clearTimeout(timerPrin);
 		}else if(weAreClarca =="Clarcassonne"){
 			location.reload()
-		}
+		}else if(weAreClarca =="Extreme_Pong"){
+			$('#pongcanvas').remove();
+			clearTimeout(timerPrinPong);
+			location.reload()
+			
+		}		
 
 
 		Session.set('match_id', undefined);
 		$('#clarcassonnecontainer').hide();
 		$('#roomcontainer').hide();
+		$('#pongcontainer').hide();
+		$('#theherocontainer').hide();
 		$('#aliencontainer').hide();
 		$('#frootwarscontainer').hide();
 		$('#matches').fadeIn();
 
-		if (weAreAlien =="Alien_Invasion" || weAreFroot =="Froot_Wars" || weAreHero =="The_Hero"){
+		if (weAreAlien =="Alien_Invasion" || weAreFroot =="Froot_Wars" || weAreHero =="The_Hero" || weArePong =="Extreme_Pong"){
 			Session.set('game_id', undefined);
 			$('#matches').hide();
 			$('#games').fadeIn();
