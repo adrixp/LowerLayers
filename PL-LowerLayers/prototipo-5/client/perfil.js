@@ -31,8 +31,14 @@ Template.miperfiltemp.rank = function(){
 			for(var i=0;i<listbestelems.length;i++){
 				if (listbestelems[i].game_id==elem.game_id){
 					elemfound=true;
-					if(listbestelems[i].score<elem.score)
-						listbestelems[i].score=elem.score;
+					var game=Games.findOne({_id: elem.game_id});
+     				if (game.name=="Extreme_Pong"){
+     					if(listbestelems[i].score>elem.score)
+      						listbestelems[i].score=elem.score;
+     				}else{
+     					if(listbestelems[i].score<elem.score)
+      						listbestelems[i].score=elem.score;	
+     				}
 				}		
 			}; 
 			if (elemfound==false)

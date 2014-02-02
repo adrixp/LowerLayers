@@ -53,19 +53,19 @@ var startGame = function() {
 
     if(Music.extension){Music.menu.chmod.Miplay()};
            
-  /*  if (GamePong.jugadores==2){
+    if (GamePong.jugadores==2){
       GamePong.segundos=60;    
       GamePong.duracion= GamePong.segundos*1000;
       GamePong.setBoard(2,new TitleScreenPong("Alex extreme pong", 
                                       "Aprieta espacio para jugar!",
                                       playGame));
-    }else{*/
+    }else{
       GamePong.vidas=3;
       GamePong.duracion=0;
       GamePong.setBoard(2,new TitleScreenPong("Alex Extreme Pong", 
                                       "Aprieta espacio para jugar!",
                                       playGame1));
-    //}
+    }
 }
 
 
@@ -83,7 +83,7 @@ OBJETO_GOKU         =1024;
 OBJETO_CAJAMAGICA   =2048;
 
 
-/*
+
 var endGame = function(){
 
     if(GamePong.mobile) {
@@ -117,9 +117,9 @@ var playGame = function() {
     board.add(new Pala1PlayerA());
     board.add(new Pala2PlayerA());
     board.add(new Pala3PlayerA());
-    board.add(new Pala1PlayerB());
-    board.add(new Pala2PlayerB());
-    board.add(new Pala3PlayerB());
+    board.add(new Pala1Maquina(40));
+    board.add(new Pala2Maquina());
+    board.add(new Pala3Maquina());
 
     if(Music.extension){Music.niveles.pitido.Miplay()};    //SONIDO: PITIDO INICIAL
     
@@ -127,15 +127,8 @@ var playGame = function() {
     // PELOTAS
 
     switch(GamePong.dificultad){
-        
 
-        case 6:
-            
-            board.add(new PalauxA());
-            board.add(new PalauxB());                 
-              
-
-        case 5:
+        case 3:
 
           	rand= Math.floor((Math.random()*(GamePong.duracion)));
             setTimeout(function(){(board.add(new Pelota_Poke()))},rand);
@@ -144,15 +137,9 @@ var playGame = function() {
             setTimeout(function(){(board.add(new Pelota()))},GamePong.duracion/20*3);
             rand= Math.floor((Math.random()*(GamePong.duracion)));
             setTimeout(function(){(board.add(new Pelota_Flor()))},rand);
+
              
-        case 3:  
-            for (var i=1;i<2;i++){
-                rand= Math.floor((Math.random()*(GamePong.duracion)));
-                setTimeout(function(){(board.add(new Pelota_Flor()))},rand*i);
-            };
-            rand= Math.floor((Math.random()*(GamePong.duracion)));
-            setTimeout(function(){(board.add(new Pelota_Poke()))},rand);
-            
+        case 2:             
             for (var i=1;i<2;i++){
                 setTimeout(function(){(board.add(new Pelota()))},GamePong.duracion/20*i);
 	          };
@@ -160,25 +147,20 @@ var playGame = function() {
             setInterval(function(){(board.add(new Pelota_Azul()))},GamePong.duracion/5);
             setInterval(function(){(board.add(new Pelota_DB()))},GamePong.duracion/4);
         
-        case 4:
-            if (GamePong.dificultad == 4){
+        case 1:
             board.add(new cajaMagica(GamePong.width/2,GamePong.height/2));
             board.add(new cajaMagica(GamePong.width/3,GamePong.height));
             board.add(new cajaMagica(2*GamePong.width/3,0));
-            }  
-        case 2:
-            if (GamePong.dificultad == 2){
-                  board.add(new PalauxA());
-                  board.add(new PalauxB());
-            }   
-        case 1:
             board.add(new Pelota());
+            board.add(new PalauxA());
+            board.add(new PalauxB());
+            
 
     }
     GamePong.setBoard(2,board);
     setTimeout(function(){endGame()},GamePong.duracion);
 }
-*/
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// PALAS!!
@@ -193,14 +175,16 @@ var Pala1PlayerA = function() { //Parte central de la pala izquierda
     this.y = GamePong.height/2 - this.h/2;
     this.step = function(dt) {
     
-      if(GamePong.keys['down1']) { this.vy = this.maxVel; }
+  /*    if(GamePong.keys['down1']) { this.vy = this.maxVel; }
       else if(GamePong.keys['up1']) { this.vy = -this.maxVel; }
       
       else if(GamePong.keys['down2'] && GamePong.jugadores==1) { this.vy = this.maxVel; }
       else if(GamePong.keys['up2'] && GamePong.jugadores==1) { this.vy = -this.maxVel; }
-      else { this.vy = 0; }
+      else { this.vy = 0; }*/
       
-      
+      if(GamePong.keys['down2']) { this.vy = this.maxVel; }
+      else if(GamePong.keys['up2']) { this.vy = -this.maxVel; }
+        else { this.vy = 0; }
 
 	    this.y += this.vy * dt;
 
@@ -266,85 +250,6 @@ PalauxA.prototype = new SpritePong();
 PalauxA.prototype.type = OBJETO_PALAUX;
 
 
-/*
-////////// PLAYER B
-var Pala1PlayerB = function() { //Parte central de la pala derecha
-  this.setup('pala1B', { vx: 0, frame: 0, reloadTime: 0.25, maxVel: 200 });
-
-  this.reload = this.reloadTime;
-  this.x = GamePong.canvas.width - 10 - this.w;
-  this.y = GamePong.height/2 - this.h/2;
-
-  this.step = function(dt) {
-
-    if(GamePong.keys['down2']) { this.vy = this.maxVel; }
-    else if(GamePong.keys['up2']) { this.vy = -this.maxVel; }
-    else { this.vy = 0; }
-      
-    this.y += this.vy * dt;
-
-    if(this.y < 32) { this.y = 32; }
-    else if(this.y > GamePong.height - 32 - this.h) { 
-        this.y = GamePong.height -32 - this.h
-    }
-
-    this.reload-=dt;
-
-  }
-}
-
-// Heredamos del prototipo new SpritePong()
-Pala1PlayerB.prototype = new SpritePong();
-Pala1PlayerB.prototype.type = OBJETO_PALA1;
-
-var Pala2PlayerB = function() { //Parte de abajo de la pala derecha
-    this.setup('pala2B', { vx: 0, frame: 0, reloadTime: 0.25, maxVel: 200 });
-
-    this.reload = this.reloadTime;
-    this.x = GamePong.width - 10 - this.w;
-    this.y = GamePong.height/2 + 100/2 - this.h/2;
-
-    this.step = function(dt) {
-      this.y= this.board.objects[3].y + this.board.objects[3].h;
-	    this.reload-=dt;
-    }
-}
-
-Pala2PlayerB.prototype = new SpritePong();
-Pala2PlayerB.prototype.type = OBJETO_PALA2;
-
-
-var Pala3PlayerB = function() {  //Parte de arriba de la pala derecha
-    this.setup('pala3B', { vx: 0, frame: 0, reloadTime: 0.25, maxVel: 200 });
-
-    this.reload = this.reloadTime;
-    this.x = GamePong.width - 10 - this.w;
-    this.y = GamePong.height/2 - 100/2 - this.h/2;
-
-    this.step = function(dt) {
-      this.y= this.board.objects[3].y - this.h;
-	    this.reload-=dt;
-    }
-}
-
-Pala3PlayerB.prototype = new SpritePong();
-Pala3PlayerB.prototype.type = OBJETO_PALA2;
-
-var PalauxB =function(){ // Pala auxiliar de la pala derecha (en la izquierda)
-    this.setup('pala1B', { vx: 0, frame: 0, reloadTime: 0.25, maxVel: 200 });
-    
-    this.reload = this.reloadTime;
-    this.x= GamePong.width/3 - this.w;
-    this.step = function(dt) {
-      this.y= this.board.objects[3].y;
-	    this.reload-=dt;
-  }
-    
-}
-PalauxB.prototype = new SpritePong();
-PalauxB.prototype.type = OBJETO_PALAUX;
-
-*/
 
 
 ////////// PLAYER MAQUINA
@@ -364,8 +269,8 @@ var Pala1Maquina = function(factor) { //Parte central de la pala derecha
 
     if(rand > this.factor) {  percent = true }
 
-    pelota = ( _.find(this.board.objects,function(obj){return obj.sprite=="pelota"}));
 
+    pelota = ( _.find(this.board.objects,function(obj){return obj.sprite=="pelota"}));
     if(pelota.vx > 0 && pelota.x>GamePong.width/4 && pelota.y>this.y+this.h/2 && percent) { 
       this.vy = this.maxVel;
     }
@@ -378,9 +283,8 @@ var Pala1Maquina = function(factor) { //Parte central de la pala derecha
     else if(pelota.vx < 0 && pelota.x>GamePong.width/2 && pelota.y<this.y+this.h/2 && percent) { 
       this.vy = -this.maxVel;
     }
-    
     else { this.vy = 0; }
-     
+
    
     this.y += this.vy * dt;
 
@@ -391,8 +295,8 @@ var Pala1Maquina = function(factor) { //Parte central de la pala derecha
     }
     
     
-    if (GamePong.points2 ==3){nextLvl()};
-    if (GamePong.points1 ==3){endGame1()};
+    if (GamePong.points2 ==3 && GamePong.jugadores==1){nextLvl()};
+    if (GamePong.points1 ==3 && GamePong.jugadores==1){endGame1()};
     
 
     this.reload-=dt;
@@ -1248,6 +1152,8 @@ var nextLvl = function(){
       GamePong.setBoard(2,new TitleScreenPong("\u00a1\u00a1\u00a1Campeon!!! \u00a1\u00a1\u00a1Ganaste!!!", 
                                       "\u00c9ste es tu tiempo: "+(GamePong.duracion-1),
                                       playMenu));
+        Meteor.call("matchFinish", Session.get("match_id"), Session.get("game_id"), GamePong.duracion-1);
+        share();
     }
 }
 
@@ -1274,14 +1180,21 @@ var endGame1 = function(){
         if(Music.extension){Music.niveles.over.Miplay()};    //SONIDO: Fin del juego
         if(Music.extension){Music.niveles.aplauso.Miplay()}
         GamePong.setBoard(2,new TitleScreenPong("... \u00a1No pasas del nivel 1!", 
-                                        "hay que entrenar mas",
+                                        "hay que jugar mas",
                                         playMenu));
       }
     }
 }
 
 
-
+var share = function() {
+    $(".tweetbtn").html("<iframe allowtransparency='true' frameborder='0' scrolling='no'"+
+                        "src='https://platform.twitter.com/widgets/tweet_button.html?text=He jugado a Alien Invasion en lowerlayers.meteor.com y he obtenido "+GameAlien.points+" puntos"+"'"+
+                         "style='width:130px; height:20px;'></iframe>");                   
+    $(".fbsharebtn").html("<iframe src='//www.facebook.com/plugins/like.php?href=https%3A%2F%2Flowerlayers.meteor.com&amp;width&amp;ref=hola&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80' scrolling='no' frameborder='0' style='border:none; overflow:hidden; height:80px;' allowTransparency='true'></iframe>");
+    $(".gsharebtn").html("<a href='https://plus.google.com/share?url=http://lowerlayers.meteor.com/' onclick='javascript:window.open(this.href,"+
+                          "'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;'><img src='https://www.gstatic.com/images/icons/gplus-32.png' alt='Share on Google+'/></a>");
+}
 
 
 

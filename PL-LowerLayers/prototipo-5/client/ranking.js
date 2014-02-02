@@ -167,7 +167,11 @@ Template.bygamerankingtemp.gameranking=function(){
 //Carga puntuaciones para juego
 Template.bygamerankingtemp.ranking=function(){
 	if (Ranking.find().count()!=0){
-		var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:-1},limit:10});
+		var game=Games.findOne({_id: Session.get("game_id_ranking")});
+		if (game.name=="Extreme_Pong")
+			var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:1},limit:3});
+		else	
+			var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:-1},limit:3});
 		var list2=[];
 		list.forEach(function(elem) {
 			list2.push({"user":Meteor.users.findOne({_id:elem.user_id}).username,
@@ -225,8 +229,14 @@ Template.byuserrankingtemp.ranking=function(){
    			for(var i=0;i<listbestsids.length;i++){
     			if (listbestsids[i].game_id==elem.game_id){
      				elemfound=true;
-     				if(listbestsids[i].score<elem.score)
-      					listbestsids[i].score=elem.score;
+     				var game=Games.findOne({_id: elem.game_id});
+     				if (game.name=="Extreme_Pong"){
+     					if(listbestsids[i].score>elem.score)
+      						listbestsids[i].score=elem.score;
+     				}else{
+     					if(listbestsids[i].score<elem.score)
+      						listbestsids[i].score=elem.score;	
+     				}
     			}  
    			};
    			if (elemfound==false)
@@ -264,7 +274,11 @@ Template.byusergamerankingtemp.user_selected=function(){
 //Carga puntuaciones para juego y un usuario
 Template.byusergamerankingtemp.ranking=function(){
 	if (Ranking.find().count()!=0){
-		var list = Ranking.find({game_id:Session.get("game_id_ranking"),user_id:Session.get("user_id_ranking")},{sort:{score:-1}});
+		var game=Games.findOne({_id: Session.get("game_id_ranking")});
+		if (game.name=="Extreme_Pong")
+			var list = Ranking.find({game_id:Session.get("game_id_ranking"),user_id:Session.get("user_id_ranking")},{sort:{score:1}});
+		else	
+			var list = Ranking.find({game_id:Session.get("game_id_ranking"),user_id:Session.get("user_id_ranking")},{sort:{score:-1}});
 		var list2=[];
 		list.forEach(function(elem) {
 			list2.push({"score":elem.score});

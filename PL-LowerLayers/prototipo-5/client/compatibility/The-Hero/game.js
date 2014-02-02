@@ -290,10 +290,11 @@ canvasApp = function() {
 			hero.x = canvas.width / 2;
 			hero.y = canvas.height / 2;
 			level = 0;
-			Meteor.call("matchFinish", Session.get("match_id"), Session.get("game_id"), princessesCaught);
-			share();
+			if (princessesCaught!=0){
+				Meteor.call("matchFinish", Session.get("match_id"), Session.get("game_id"), princessesCaught);
+				share();
+			}	
 			monster.speed =40;
-
 			sndover.play();
 			princessesCaught=0;
 			if (13 in keysDown){

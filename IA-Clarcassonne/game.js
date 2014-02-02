@@ -94,7 +94,7 @@
           endTablero[id_partida]=Tablero;
 
 	  console.log("fichas restantes turno user",Tablero.totalFichas)
-	  if (Tablero.totalFichas == 50){
+	  if (Tablero.totalFichas == 0){
 		console.log("se acabaron las fichas")
     
 		var puntuacion=[];
@@ -163,7 +163,7 @@
         //console.log("NUEVOSEGUIDOR-------->>>",nuevoSeguidor);
 
             console.log("fichas restantes turno maquina",Tablero.totalFichas)
-            if (Tablero.totalFichas == 50){
+            if (Tablero.totalFichas == 0){
     console.log("se acabaron las fichas maquina")
     
     var puntuacion=[];

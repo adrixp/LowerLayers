@@ -203,21 +203,21 @@ var SpriteSheetPong = new function() {
 }
 
 var MenuScreen = function MenuScreen(callback) {
-    var up = true;
+    var up = false;
     
-    var updcha= true;
-    var upizda= true;
+    var updcha= false;
+    var upizda= false;
     
     var n_jugadores= "ARCADE";
 
     this.step = function(dt) {
-     /*   if(!GamePong.keys['fire']) up = true;
+        if(!GamePong.keys['fire']) up = true;
         if(!GamePong.keys['dcha']) updcha = true;
         if(!GamePong.keys['izda']) upizda = true;
         
-        if(up && GamePong.keys['fire'] && callback)*/ callback();
+        if(up && GamePong.keys['fire'] && callback) callback();
         
-       /*if (updcha && GamePong.keys['dcha']){
+       if (updcha && GamePong.keys['dcha']){
             
             if (GamePong.jugadores==1){GamePong.jugadores=2}
             else{GamePong.jugadores=1}
@@ -232,15 +232,13 @@ var MenuScreen = function MenuScreen(callback) {
         }
         
         if (GamePong.jugadores ==1){n_jugadores= "ARCADE"}
-        else{n_jugadores= "VS"}
-          */
-        
+        else{n_jugadores= "EXTREME"}
     };
     
     
 
     this.draw = function(ctx) {
-       /* ctx.fillStyle = "#FFFFFF";
+        ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "center";
 
         ctx.font = "90px bangers";
@@ -248,7 +246,7 @@ var MenuScreen = function MenuScreen(callback) {
 
         ctx.font = "20px bangers";
         ctx.fillText('< '+n_jugadores+' >',GamePong.width/2,GamePong.height/2 + 80);
-       */    
+           
     };
     
 };
@@ -280,7 +278,7 @@ var TitleScreenPong = function TitleScreen(title,subtitle,callback) {
     }
 	  
 	  if (GamePong.jugadores==2){
-      var Max=6;
+      var Max=3;
 	    var Min=1;
     }
 	  

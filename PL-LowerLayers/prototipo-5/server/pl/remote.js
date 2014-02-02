@@ -19,7 +19,11 @@ Meteor.methods({
     	Partidas.update({_id: match_id},{$set: {finish:"true", time_end:Date.now()}});
         Ranking.insert({user_id: this.userId, game_id: game_id, score: points});
         if (Ranking.find({game_id: game_id, user_id:this.userId}).count()==11){
-        		var list = Ranking.find({game_id: game_id, user_id:this.userId},{sort:{score:1}}).fetch();
+        		var game=Games.findOne({_id: game_id});
+        		if (game.name == "Extreme_Pong")
+        			var list = Ranking.find({game_id: game_id, user_id:this.userId},{sort:{score:-1}}).fetch();
+        		else		
+        			var list = Ranking.find({game_id: game_id, user_id:this.userId},{sort:{score:1}}).fetch();
         		var worstscoreid = list[0]._id;
         		Ranking.remove({_id:worstscoreid});
         }		

@@ -121,7 +121,7 @@ Accounts.onCreateUser(function(options, user) {
 		if (user.services.twitter){
 			var datasocialuser=user.services.twitter;
 			user.username=datasocialuser.screenName;
-			user.avatar=datasocialuser.profile_image_url_https;
+			user.avatar=(datasocialuser.profile_image_url_https.slice(0,-12))+"_bigger.jpeg";
 			user.socialred="twitter"
 		}
 	}else{
