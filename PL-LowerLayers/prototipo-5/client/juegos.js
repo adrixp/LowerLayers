@@ -377,7 +377,7 @@ Template.roomgametemp.events = {
 			$('#gamecanvasHero').remove();
 			clearTimeout(timerPrin);
 		}else if(weAreClarca =="Clarcassonne"){
-			location.reload()
+    			location.reload()
 		}else if(weAreClarca =="Extreme_Pong"){
 			$('#pongcanvas').remove();
 			clearTimeout(timerPrinPong);
@@ -435,7 +435,6 @@ Template.roomplayerstemp.events = {
 		var i_am_admin = Partidas.findOne({_id : Session.get("match_id")}).admin_by == Meteor.userId();
 		if(!initiated && !full && i_am_admin){
 			var ia_id = "Jugador_IA" + (Math.floor((Math.random()*100000000))).toString();
-			console.log(ia_id);
 			Partidas.update({_id : Session.get("match_id")},{$push: {jugadores: {user_id: ia_id}},$inc:{num_players :1,ia_players :1}});
 		} else {
 			if(full)

@@ -7,7 +7,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -19,7 +19,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -31,7 +31,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -43,7 +43,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -55,7 +55,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -67,7 +67,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -79,7 +79,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -91,7 +91,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -103,7 +103,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -115,7 +115,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -127,7 +127,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -141,7 +141,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -153,7 +153,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});
@@ -165,7 +165,7 @@ $(document).ready(function() {
         		duration: 300
       		},
      		hide: {
-      			effect: "explode",
+      			effect: "clip",
 				duration: 200
 			}
     	});

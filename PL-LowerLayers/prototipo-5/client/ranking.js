@@ -169,9 +169,9 @@ Template.bygamerankingtemp.ranking=function(){
 	if (Ranking.find().count()!=0){
 		var game=Games.findOne({_id: Session.get("game_id_ranking")});
 		if (game.name=="Extreme_Pong")
-			var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:1},limit:3});
+			var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:1},limit:10});
 		else	
-			var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:-1},limit:3});
+			var list = Ranking.find({game_id:Session.get("game_id_ranking")},{sort:{score:-1},limit:10});
 		var list2=[];
 		list.forEach(function(elem) {
 			list2.push({"user":Meteor.users.findOne({_id:elem.user_id}).username,

@@ -78,7 +78,7 @@ Template.listaAmigosOnlineTemp.events = {
 
 			$("#"+userdest_id+"_contenido").append("<div style='width:15%; height:10% ; text-align:center; float:left; '>"+
 												"<div style=' '>"+Meteor.user().username+"</div>"+
-												"<img width='75px' style='' height='75px' src='"+Meteor.user().avatar+"'>"+
+												"<img style='border-radius:5px' width='75px' style='' height='75px' src='"+Meteor.user().avatar+"'>"+
 											"</div>");
 
 			
@@ -87,7 +87,7 @@ Template.listaAmigosOnlineTemp.events = {
 
 			$("#"+userdest_id+"_contenido").append("<div style='width:15%; height:10% ; text-align:center; float:left;'>"+
 												"<div style=''>"+userdest.username+"</div>"+
-												"<img width='75px' style='' height='75px' src='"+userdest.avatar+"'>"+
+												"<img style='border-radius:5px' width='75px' style='' height='75px' src='"+userdest.avatar+"'>"+
 											"</div>");
 			
 

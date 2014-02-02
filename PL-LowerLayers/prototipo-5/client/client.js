@@ -145,7 +145,7 @@ Deps.autorun(function () {
 
 //Encuentra juegos
 Template.gamestemp.games=function(){
-	return Games.find();
+	return Games.find({},{sort: {name:1}});
 }
 
 //Carga mensajes del chat
