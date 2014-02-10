@@ -29,7 +29,7 @@
 	</div>
 
 	<div id="dialog_fullmatch" title="Full game.">
-  		<p>Match game. Try another match."</p>
+  		<p>Full match. Try another match.</p>
 	</div>
 
 	<div id="dialog_matchname" title="Name busy.">
@@ -148,14 +148,15 @@
 <template name="playerstemp">
 	<div id="players" >
 		{{# if first}}
+			<p><span class="infotitlerank">By users</span></p>
 			{{# if gotplayers}}
-				<p><span class="infotitlerank">By users</span></p>
+				
 				<div style="overflow:auto">
 				{{# each players}}
 					<a style ="cursor:pointer;text-decoration:none;" class="linkplayer">· {{username}}</a>
 				{{/each}}
 				</div>
-				<p><input value="Type an username to see their best scores" onfocus="if(this.value=='Type an username to see their best scores')this.value=''" size="35" type='text' id='formplayer'/>
+				<p><input value="Type an username to see their best scores" onfocus="if(this.value=='Type an username to see their best scores')this.value=''" size="40" type='text' id='formplayer'/>
 				<button id='btnplayer'>Search</button></p>
 			{{else}}
 				Nobody has scored yet
@@ -186,7 +187,7 @@
 						{{/ each}}
 					</tbody>
 				</table>
-				<input value="Type an username to see their best scores in this game" onfocus="if(this.value=='Type an username to see their best scores in this game')this.value=''" size="45" type='text' id='formplayergame'/>
+				<input value="Type an username to see their best scores in this game" onfocus="if(this.value=='Type an username to see their best scores in this game')this.value=''" size="50" type='text' id='formplayergame'/>
 				<button id='btnplayergame'>Search</button>
 				<p>Users who have played this game:</p>
 				<div style="overflow:auto">
@@ -555,13 +556,14 @@
 		<b>Friends:</b> {{amigos}}<br><br>
 		<b>Best scores: </b>
 		{{# each rank}}
-			<div>&nbsp;&nbsp;&nbsp;&nbsp;{{game}} - {{points}}</div>
+			<div>{{game}} - {{points}}</div>
 		{{/ each}}
+		<br>
 		<b>Achievements: </b>
 		{{# each profitslist}}
-			<div>&nbsp;&nbsp;&nbsp;&nbsp;{{game}} - {{title}}</div>
+			<div>{{game}} - {{title}}</div>
 		{{/ each}}
-		<br><br>
+		<br><br><br>
 		<button id="modifprof"> Edit </button>
 	</div>	
 </template>
@@ -643,11 +645,12 @@
 		{{/if}}	
 		<b>Best scores: </b>
 		{{# each rank}}
-			<div>&nbsp;&nbsp;&nbsp;&nbsp;{{game}} - {{points}}</div>
+			<div>{{game}} - {{points}}</div>
 		{{/ each}}
+		<br>
 		<b>Achievements: </b>
 		{{# each profitslist}}
-			<div>&nbsp;&nbsp;&nbsp;&nbsp;{{game}} - {{title}}</div>
+			<div>{{game}} - {{title}}</div>
 		{{/ each}}
 		</div>
 	</div>	
