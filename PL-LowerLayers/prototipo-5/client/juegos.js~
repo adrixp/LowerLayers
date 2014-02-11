@@ -445,16 +445,31 @@ Template.roomplayerstemp.events = {
 			if(full)
 				$("#dialog_iafullerror").dialog("open");
 		};
+	},
+	// Elimina un jugador IA
+	'click #remove_ia' : function(event){
+		var initiated = Partidas.findOne({_id : Session.get("match_id")}).initiated;
+		var i_am_admin = Partidas.findOne({_id : Session.get("match_id")}).admin_by == Meteor.userId();
+		if(!initiated && i_am_admin){
+			var players = Partidas.findOne({_id : Session.get('match_id')}).jugadores;
+			players.forEach(function(entry){
+				console.log(entry.user_id.match(/Jugador_IA/));
+			});
+			var full = Partidas.findOne({_id : Session.get('match_id')}).num_players >= Partidas.findOne({_id : Session.get('match_id')}).players_max;
+			Partidas.update({_id : Session.get('match_id')},{$set: {full : full}});
+		};
 	}
 };
 
 // Devuelve 'true' si eres administrador para representar el botón de empezar
 Template.roomplayerstemp.admin = function() {
 	var isAdmin = false;
+	var initiated = false;
 	if(Meteor.userId() && Session.get('match_id')){
 		isAdmin = Meteor.userId() == Partidas.findOne({_id : Session.get('match_id')}).admin_by;
+		initiated = Partidas.findOne({_id : Session.get('match_id')}).initiated;
 	};
-	return isAdmin;
+	return isAdmin && !initiated;
 }
 
 // Devuelve 'true' si juegas al carca

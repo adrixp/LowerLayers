@@ -431,7 +431,7 @@
 	<div id="roomcontainer">
 		<div class="alaputaizqtop">
 			<br> 
-			<button style ="cursor:pointer;text-decoration:none;" id="exitgame"> Back </button>
+			<button style ="cursor:pointer;text-decoration:none; margin-left: 1em;" id="exitgame"> Back </button>
 			<br><br><br>
 			{{> roomplayerstemp}}
 		</div>
@@ -466,20 +466,25 @@
 
 
 <template name="roomplayerstemp">
-	<table>
-	<tr> <th>Players:</th> </tr>
-		{{#each players}}
-			<tr> <td>{{name}}</td> </tr>
-		{{/each}}
+	<table id="roombuttonstable">
+		<tr>
+			<td><table>
+			<tr> <th>Players</th> </tr>
+				{{#each players}}
+					<tr> <td>{{name}}</td> </tr>
+				{{/each}}
+			</table></td>
+			{{#if carca}}{{#if admin}}
+			<td><div id="empezarboton">
+				<p style="margin-left: 2em;"> <button id="add_ia" style="width: 10em;"> Add IA player </button></p>
+				<p style="margin-left: 2em;"> <button id="remove_ia" style="width: 10em;"> Remove IA player </button></p>
+			</div></td>
+			{{/if}}{{/if}}
+		</tr>
 	</table>
-	{{#if carca}}
-		{{#if admin}}
-			<div id="empezarboton">
-				<p><button id="add_ia"> Add IA player</button></p>
-				<p><button id="EmpezarCarca"> Start </button></p>
-			</div>
-		{{/if}}
-	{{/if}}
+	{{#if carca}}{{#if admin}}
+	<button id="EmpezarCarca" style="margin-left: 1em; margin-bottom: 1em;"> Start </button>
+	{{/if}}{{/if}}
 </template>
 
 

@@ -244,6 +244,30 @@ input:focus{
 	height: 420px;
 }
 
+#roombuttonstable {
+	box-shadow: 0px 11px 8px -10px #058, 0px -11px 8px -10px #058; 
+	padding: 1em; 
+	margin-bottom: 2em;
+
+}
+
+#roombuttonstable * th {
+	font-size: 110%;
+	text-align: center;
+	padding-top: 0.3em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 0.3em;
+}
+
+#roombuttonstable * td {
+	text-align: center;
+	padding-top: 0.3em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 0.3em;
+}
+
 .menuAmigosStyle {
 	cursor:pointer;
 	font-size: 10px;

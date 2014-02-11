@@ -15,7 +15,7 @@ body{
 button{
 	color: white;
 	background-color: #058;
-	border-radius: 5px;
+	border-radius: 20px;
 	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-left: 12px;
@@ -242,6 +242,30 @@ input:focus{
 #accordion .ui-accordion-content{
 	width: 103px;
 	height: 420px;
+}
+
+#roombuttonstable {
+	box-shadow: 0px 11px 8px -10px #058, 0px -11px 8px -10px #058; 
+	padding: 1em; 
+	margin-bottom: 2em;
+
+}
+
+#roombuttonstable * th {
+	font-size: 120%;
+	text-align: center;
+	padding-top: 0.3em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 0.3em;
+}
+
+#roombuttonstable * td {
+	text-align: center;
+	padding-top: 0.3em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 0.3em;
 }
 
 .menuAmigosStyle {

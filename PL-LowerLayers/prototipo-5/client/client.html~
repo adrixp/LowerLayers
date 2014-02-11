@@ -16,24 +16,24 @@
    	</div>
 
 	<div id="dialog_birthdate" title="Fill in your profile.">
-  		<p>Please, fill in your profile befor join the game</p>
+  		<p>Please, fill in your profile before join the game</p>
 		<p>You can fill in your birth date here (Remember, you cannot change it anymore): <input type="text" readonly="readonly" id="datepickerprof_dialog"></p>
 		<button id="birthbutton_dialog"> Save date </button>
 	</div>
 	<div id="dialog_nomatches" title="No games available.">
-  		<p>We are sorry, there isn't games available. Try again later.</p>
+  		<p>We are sorry, there isn't matches available. Try again later.</p>
 	</div>
 
 	<div id="dialog_password" title="Game protected by password.">
-  		<p>Match protected by passworda. You need to fill in the correct password.</p>
+  		<p>Match protected by password. You need to fill in the correct password.</p>
 	</div>
 
 	<div id="dialog_fullmatch" title="Full game.">
-  		<p>Full game. Try another game."</p>
+  		<p>Full match. Try another match.</p>
 	</div>
 
 	<div id="dialog_matchname" title="Name busy.">
-  		<p>There is a game with this name. Try with other.</p>
+  		<p>There is a match with the same name. Try with other.</p>
 	</div>
 
 	<div id="dialog_threeplayers" title="Not enough players.">
@@ -49,11 +49,11 @@
 	</div>
 
 	<div id="dialog_nogameplayed" title="Search failed.">
-  		<p>This user haven't played any game yet</p>
+  		<p>This user haven't scored any game yet</p>
 	</div>
 
 	<div id="dialog_thisnoplayed" title="Search failed.">
-  		<p>This user haven't played this game yet</p>
+  		<p>This user haven't scored this game yet</p>
 	</div>
 
 	<div id="dialog_bademail" title="Invalid email.">
@@ -61,7 +61,7 @@
 	</div>
 
 	<div id="dialog_initiated" title="Game started.">
-  		<p>The game has already started.</p>
+  		<p>The match has already started.</p>
 	</div>
 
 	<div id="dialog_alreadyinto" title="Access like observer.">
@@ -85,7 +85,7 @@
 </template>
 
 <template name="iconLoginTemp">
-		<img width='55px' height='55px'  src={{avatar}} >
+		<img style="border-radius:3px" width='55px' height='55px'  src={{avatar}} >
 </template>
 
 <template name="tabstemp">
@@ -138,7 +138,7 @@
 
 <template name="gamesrankingtemp" >
 	<div id="gamesranking">
-		<p>By games:</p>
+		<p><span class="infotitlerank">By games</span></p>
 		{{# each games}}
 			<a style ="cursor:pointer;text-decoration:none;" class="linkgameranking">· {{name}}</a><br>
 		{{/ each}}
@@ -148,18 +148,18 @@
 <template name="playerstemp">
 	<div id="players" >
 		{{# if first}}
-			<p>Write an useranme to see her best score</p>
-			<p><input type='text' id='formplayer'/>
-			<button id='btnplayer'>Search</button></p>
+			<p><span class="infotitlerank">By users</span></p>
 			{{# if gotplayers}}
-				<p>By users:</p>
+				
 				<div style="overflow:auto">
 				{{# each players}}
 					<a style ="cursor:pointer;text-decoration:none;" class="linkplayer">· {{username}}</a>
 				{{/each}}
 				</div>
+				<p><input value="Type an username to see their best scores" onfocus="if(this.value=='Type an username to see their best scores')this.value=''" size="40" type='text' id='formplayer'/>
+				<button id='btnplayer'>Search</button></p>
 			{{else}}
-				Nobody have played yet
+				Nobody has scored yet
 			{{/if}}
 		{{/ if}}
 	</div>
@@ -170,16 +170,8 @@
 		{{# if user_not_selected}} 
 			<p><button style ='cursor:pointer;text-decoration:none;' class='linkback'>Back</button></p>
 			{{# if gotplayersgame}}
-				<p>Score in {{gameranking}}</p>
-				<p>Write an useranme to see her best score in this game</p>
-				<input type='text' id='formplayergame'/>
-				<button id='btnplayergame'>Buscar</button>
-				<p>Users who have played this game:</p>
-				<div style="overflow:auto">
-				{{# each playersgame}}
-					<a style ="cursor:pointer;text-decoration:none;" class="linkplayergame">· {{username}}</a>
-				{{/each}}
-				</div>
+				<p><span class="infotitlerank">Scores in {{gameranking}}</span></p>
+				
 				<table>
 					<thead>
 						<tr>
@@ -195,8 +187,16 @@
 						{{/ each}}
 					</tbody>
 				</table>
+				<input value="Type an username to see their best scores in this game" onfocus="if(this.value=='Type an username to see their best scores in this game')this.value=''" size="50" type='text' id='formplayergame'/>
+				<button id='btnplayergame'>Search</button>
+				<p>Users who have played this game:</p>
+				<div style="overflow:auto">
+				{{# each playersgame}}
+					<a style ="cursor:pointer;text-decoration:none;" class="linkplayergame">· {{username}}</a>
+				{{/each}}
+				</div>
 			{{else}}
-				Nobody have played yet
+				Nobody has scored yet
 			{{/if}}
 		{{/ if}}
 	</div>
@@ -206,7 +206,7 @@
 	<div id="byuserranking">
 		{{# if game_not_selected}}
 			<p><button style ='cursor:pointer;text-decoration:none;' class='linkback'>Back</button></p>
-			<p>Score by {{playerranking}}</p>
+			<p><span class="infotitlerank">Score by {{playerranking}}</span></p>
 			<table>
 				<thead>
 					<tr>
@@ -230,7 +230,7 @@
 	<div id="byusergameranking">
 		{{# if user_selected}}
 		<button style ='cursor:pointer;text-decoration:none;' class='linkback'>atras</button>
-		<p>Score by {{gameranking.user}} in {{gameranking.name}}</p>
+		<p><span class="infotitlerank">Score by {{gameranking.user}} in {{gameranking.name}}</span></p>
 		<table>
 			<thead>
 				<tr>
@@ -291,9 +291,10 @@
 <template name="gamestemp" >
 	<div id="games">
 		{{# each games}}
-			<div style="text-align: center; float: left; width: 25% ; ">	
-				<a style ="cursor:pointer"  class="linkgame" tipo={{name}}>{{name}}</a><br><br>
+			<div class="titleandgame" style="text-align: center; float: left; width: 20% ; ">	
+				<a style ="text-decoration:none;color:#121212; cursor:pointer"  class="linkgame" tipo={{name}}>{{name}}</a><br>
 				<img  width='150px' height='150px' src=FotosPeq/{{name}} class="linkgame" ><br>
+				<span style="font-weight: 600;color:#121212; font-size:small">{{players_max}} players max</span>
 			</div>
 		{{/ each}}
 		<br style="clear:both;"/>
@@ -348,7 +349,7 @@
 		</table> </p>
 		<p style="width: 100%;">
 			<button id="match_back">Back</button>
-			<button id="random_button" style="margin-left : auto; margin-right: auto">Random Game</button>
+			<button id="random_button" style="margin-left : auto; margin-right: auto">Random match</button>
 		</p>
 	</div>
 </template>
@@ -358,6 +359,13 @@
 	<div style="margin-left:20%" id="aliencontainer">
 		
 	</div>
+</template>
+
+
+<template name="pongtemp">
+	<div id='pongcontainer'>
+  		
+ 	</div>
 </template>
 
 <template name="herotemp">
@@ -423,15 +431,15 @@
 	<div id="roomcontainer">
 		<div class="alaputaizqtop">
 			<br> 
-			<button style ="cursor:pointer;text-decoration:none;" id="exitgame"> Back </button>
+			<button style ="cursor:pointer;text-decoration:none; margin-left: 1em;" id="exitgame"> Back </button>
 			<br><br><br>
 			{{> roomplayerstemp}}
 		</div>
 		<div class="alaputadertop"><h1 class="titulogame">{{> gamenametemp}}</h1>  <h2 class="titulogame">{{> matchnametemp}}</h2></div>
 		<br style="clear:both;"/>
 		<div class="alaputaizq"> {{> roomchattemp}} </div>
-		<div class="alaputader">{{> alientemp}} {{> frootwarstemp}} {{> clarcassonnetemp}} {{> herotemp}}</div>
-		<br style="clear:both;"/>
+		<div class="alaputader">{{> alientemp}} {{> frootwarstemp}} {{> clarcassonnetemp}} {{> herotemp}} {{> pongtemp}}</div>
+		<br style="clear:both;"/> 
 		<div style="text-align:center">{{> my-video }} {{> remote-videos }}</div>
 		<div style="width:33%;float:left">
 			<span class="fbsharebtn"></span>			
@@ -458,20 +466,25 @@
 
 
 <template name="roomplayerstemp">
-	<table>
-	<tr> <th>Players:</th> </tr>
-		{{#each players}}
-			<tr> <td>{{name}}</td> </tr>
-		{{/each}}
+	<table id="roombuttonstable">
+		<tr>
+			<td><table>
+			<tr> <th>Players</th> </tr>
+				{{#each players}}
+					<tr> <td>{{name}}</td> </tr>
+				{{/each}}
+			</table></td>
+			{{#if carca}}{{#if admin}}
+			<td><div id="empezarboton">
+				<p style="margin-left: 2em;"> <button id="add_ia" style="width: 10em;"> Add IA player </button></p>
+				<p style="margin-left: 2em;"> <button id="remove_ia" style="width: 10em;"> Remove IA player </button></p>
+			</div></td>
+			{{/if}}{{/if}}
+		</tr>
 	</table>
-	{{#if carca}}
-		{{#if admin}}
-			<div id="empezarboton">
-				<p><button id="add_ia"> Add IA player</button></p>
-				<p><button id="EmpezarCarca"> Start </button></p>
-			</div>
-		{{/if}}
-	{{/if}}
+	{{#if carca}}{{#if admin}}
+	<button id="EmpezarCarca" style="margin-left: 1em; margin-bottom: 1em; width: 10em;"> Start </button>
+	{{/if}}{{/if}}
 </template>
 
 
@@ -532,7 +545,7 @@
 
 <template name='imgmiperfiltemp'>
 	<div  id="imgdataprofile">	
-		<img id='imgprofile' width='150px' height='150px' src={{avatar}}>
+		<img style="border-radius:5px" id='imgprofile' width='150px' height='150px' src={{avatar}}>
 	</div>	
 </template>
 
@@ -545,17 +558,18 @@
 		</div><br>
 		<b>Birth date:</b> {{mi.birthday}}<br>
 		<b>email:</b> {{mi.address}}<br>
-		<b>Friends:</b> {{amigos}}<br>
+		<b>Friends:</b> {{amigos}}<br><br>
 		<b>Best scores: </b>
 		{{# each rank}}
 			<div>{{game}} - {{points}}</div>
 		{{/ each}}
-		<b>Achievement: </b>
+		<br>
+		<b>Achievements: </b>
 		{{# each profitslist}}
 			<div>{{game}} - {{title}}</div>
 		{{/ each}}
-		<br><br>
-		<button id="modifprof"> Set </button>
+		<br><br><br>
+		<button id="modifprof"> Edit </button>
 	</div>	
 </template>
 
@@ -572,7 +586,7 @@
 	<div  id="contenedorimagenes" style="height:150px">
 		<button type="button" id="previousavatar" style="float: left; margin-top:65px"> < </button>
 		<div id="avatar-slider" style="float: left;">
-			<img id="imgprofilepreview" width='150px' height='150px' src={{avatar}}>
+			<img  id="imgprofilepreview" width='150px' height='150px' src={{avatar}}>
 		</div>
 		<button type="button" id="nextavatar" style="float: left; margin-top:65px"> > </button>
 	</div>
@@ -581,11 +595,11 @@
 <template name='modmiperfiltemp'>
 	<div style="display:none" id="moddataprofile">
 		<br><br>
-		Birth date: <input type="text" readonly="readonly" id="datepickerprof"> (Remember, you can't change it anymore)<br>
+		Birth date: <input type="text" readonly="readonly" id="datepickerprof"> (Remember, you cannot change it anymore)<br>
 		{{#if socialred}}
 			<br>
 			<br>
-			(If you want to modify your profile, sign in without social network sin una red social)
+			(If you want to customize your profile, sign in without social network please)
 		{{else}}
 			email:   <input id="modemail" type="email">	
 		{{/if}}	
@@ -619,10 +633,13 @@
 	<div id="userperfil">
 		<br>	
 		<div>
-			<img id='userimgprofile' width='150px' height='150px' src={{userfind.avatar}} >
+			<img style="border-radius:5px" id='userimgprofile' width='150px' height='150px' src={{userfind.avatar}} >
 		</div>	
 		<div>
 			<span id="usernombreperfil" style='font: small-caps 185% serif; '>{{userfind.username}}</span>
+			{{#if userfind.socialred}}
+				<span>({{userfind.socialred}})</span> 
+			{{/if}}
 		</div>
 		<br>
 		<div>
@@ -635,7 +652,8 @@
 		{{# each rank}}
 			<div>{{game}} - {{points}}</div>
 		{{/ each}}
-		<b>Achievement: </b>
+		<br>
+		<b>Achievements: </b>
 		{{# each profitslist}}
 			<div>{{game}} - {{title}}</div>
 		{{/ each}}

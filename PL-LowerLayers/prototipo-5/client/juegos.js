@@ -445,6 +445,28 @@ Template.roomplayerstemp.events = {
 			if(full)
 				$("#dialog_iafullerror").dialog("open");
 		};
+	},
+	// Elimina un jugador IA
+	'click #remove_ia' : function(event){
+		var initiated = Partidas.findOne({_id : Session.get("match_id")}).initiated;
+		var i_am_admin = Partidas.findOne({_id : Session.get("match_id")}).admin_by == Meteor.userId();
+		if(!initiated && i_am_admin){
+			var players = Partidas.findOne({_id : Session.get('match_id')}).jugadores;
+			var found = false;
+			var quited_ia;
+			players.forEach(function(entry){
+				if(entry.user_id.match(/Jugador_IA/) && !found){
+					quited_ia = entry.user_id;
+					found = true;
+				};
+			});
+			if(found){
+				players = _.reject(players, function(player){ return player.user_id == quited_ia; });
+				Partidas.update({_id : Session.get('match_id')}, {$set:{jugadores : players},$inc: {num_players: -1}});
+			};
+			var full = Partidas.findOne({_id : Session.get('match_id')}).num_players >= Partidas.findOne({_id : Session.get('match_id')}).players_max;
+			Partidas.update({_id : Session.get('match_id')},{$set: {full : full}});
+		};
 	}
 };
 
