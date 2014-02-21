@@ -23,7 +23,7 @@ Template.listaAmigosOfflineTemp.listaAmigosOffline = function(){
 }		
 //Pinta mensajes privados
 Template.privatemessagestemp.listaprivatemessages=function(){
-	var privatemessages=Private_Messages.find({$or: [ {$and:[{orig_id: Session.get('orig_id')},{dest_id:Session.get('dest_id')}]} , {$and:[{orig_id:Session.get('dest_id')},{dest_id: Session.get('orig_id')}]}  ] },{sort: {date:-1}, limit:20 });
+	var privatemessages=Private_Messages.find({$or: [ {dest_id:Session.get('dest_id')} , {orig_id:Session.get('dest_id')}] },{sort: {date:-1}, limit:20 });
 	var listprivatemessages=[];
 	privatemessages.forEach(function(elem){
 		var userorig = Meteor.users.findOne({_id: elem.orig_id});
